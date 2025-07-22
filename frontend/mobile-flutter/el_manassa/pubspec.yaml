@@ -33,7 +33,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   
   # Localization
-  intl: ^0.18.1
+  intl: ^0.20.2
   
   # Storage
   hive_flutter: ^1.1.0

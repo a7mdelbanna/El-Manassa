@@ -1,92 +1,45 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { ThemeProvider, CssBaseline } from '@mui/material';
-// import { LocalizationProvider } from '@mui/x-date-pickers';
-// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
-import { I18nextProvider } from 'react-i18next';
-import i18n from './i18n/config';
-import { createAppTheme, colorPalettes } from './theme/theme';
-import { AnimatedBackground } from './components/common/AnimatedBackground';
-import { AppRouter } from './router';
-import { useThemeStore } from './store/themeStore';
-import { motion, AnimatePresence } from 'framer-motion';
-
-// Create a client
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: 1,
-    },
-  },
-});
+import React from 'react';
 
 function App() {
-  const { currentPalette, mode, direction } = useThemeStore();
-  const [mounted, setMounted] = useState(false);
-  
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  
-  const theme = useMemo(
-    () => createAppTheme(colorPalettes[currentPalette], mode, direction),
-    [currentPalette, mode, direction]
-  );
-  
-  if (!mounted) {
-    return null; // Prevent SSR flash
-  }
-  
   return (
-    <QueryClientProvider client={queryClient}>
-      <I18nextProvider i18n={i18n}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <BrowserRouter>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentPalette}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <AnimatedBackground variant="gradient" intensity={0.3} />
-                <AppRouter />
-              </motion.div>
-            </AnimatePresence>
-          </BrowserRouter>
-          <Toaster
-            position="top-center"
-            toastOptions={{
-              duration: 4000,
-              style: {
-                background: theme.palette.background.paper,
-                color: theme.palette.text.primary,
-                borderRadius: theme.shape.borderRadius,
-                boxShadow: theme.shadows[4],
-              },
-              success: {
-                iconTheme: {
-                  primary: theme.palette.success.main,
-                  secondary: '#fff',
-                },
-              },
-              error: {
-                iconTheme: {
-                  primary: theme.palette.error.main,
-                  secondary: '#fff',
-                },
-              },
-            }}
-          />
-        </ThemeProvider>
-      </I18nextProvider>
-    </QueryClientProvider>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100vh',
+      backgroundColor: '#0EA5E9',
+      color: 'white',
+      fontFamily: 'Arial, sans-serif'
+    }}>
+      <h1 style={{ fontSize: '4rem', fontWeight: 'bold', margin: '0 0 20px 0' }}>
+        El-Manassa
+      </h1>
+      <h2 style={{ fontSize: '2rem', margin: '0 0 40px 0', textAlign: 'center' }}>
+        Online Learning Platform for Egypt
+      </h2>
+      <button 
+        style={{
+          backgroundColor: 'white',
+          color: '#0EA5E9',
+          padding: '15px 40px',
+          fontSize: '1.2rem',
+          border: 'none',
+          borderRadius: '8px',
+          cursor: 'pointer',
+          fontWeight: 'bold'
+        }}
+        onClick={() => alert('Welcome to El-Manassa! 🎓')}
+      >
+        Get Started
+      </button>
+      <div style={{ marginTop: '40px', textAlign: 'center' }}>
+        <p>✨ Multi-tenant Learning Platform</p>
+        <p>🌍 Built for Egyptian Education</p>
+        <p>📱 Flutter Mobile + React Web</p>
+      </div>
+    </div>
   );
 }
 
-export default App
+export default App;

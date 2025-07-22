@@ -1,0 +1,88 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  db:
+    image: mysql:8.0
+    container_name: elmanassa_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: elmanassa_root_2024
+      MYSQL_DATABASE: elmanassa_wp
+      MYSQL_USER: elmanassa_user
+      MYSQL_PASSWORD: elmanassa_pass_2024
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - "3306:3306"
+    networks:
+      - elmanassa_network
+
+  # WordPress with Tutor LMS
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:6.4-php8.1-apache
+    container_name: elmanassa_wp
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: elmanassa_wp
+      WORDPRESS_DB_USER: elmanassa_user
+      WORDPRESS_DB_PASSWORD: elmanassa_pass_2024
+      WORDPRESS_TABLE_PREFIX: elm_
+      # WordPress Security Keys - Generate new ones for production
+      WORDPRESS_AUTH_KEY: 'put your unique phrase here'
+      WORDPRESS_SECURE_AUTH_KEY: 'put your unique phrase here'
+      WORDPRESS_LOGGED_IN_KEY: 'put your unique phrase here'
+      WORDPRESS_NONCE_KEY: 'put your unique phrase here'
+      WORDPRESS_AUTH_SALT: 'put your unique phrase here'
+      WORDPRESS_SECURE_AUTH_SALT: 'put your unique phrase here'
+      WORDPRESS_LOGGED_IN_SALT: 'put your unique phrase here'
+      WORDPRESS_NONCE_SALT: 'put your unique phrase here'
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./wp-content:/var/www/html/wp-content
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    networks:
+      - elmanassa_network
+
+  # Redis for caching
+  redis:
+    image: redis:7-alpine
+    container_name: elmanassa_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - elmanassa_network
+
+  # phpMyAdmin for database management
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: elmanassa_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: elmanassa_user
+      PMA_PASSWORD: elmanassa_pass_2024
+    networks:
+      - elmanassa_network
+
+volumes:
+  db_data:
+  wordpress_data:
+  redis_data:
+
+networks:
+  elmanassa_network:
+    driver: bridge
