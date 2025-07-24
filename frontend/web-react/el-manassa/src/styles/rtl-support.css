@@ -1,0 +1,370 @@
+/* RTL Support Styles */
+
+/* Set proper direction for body */
+body.rtl {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Tajawal', 'Cairo', 'IBM Plex Sans Arabic', 'Noto Sans Arabic', sans-serif;
+  font-feature-settings: 'liga' 1, 'kern' 1, 'ss01' 1;
+}
+
+body.ltr {
+  direction: ltr;
+  text-align: left;
+  font-family: 'Inter', 'Poppins', 'SF Pro Display', 'Segoe UI', 'Roboto', sans-serif;
+  font-feature-settings: 'liga' 1, 'kern' 1;
+}
+
+/* Typography adjustments for Arabic */
+.arabic-font {
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+}
+
+.arabic-font h1,
+.arabic-font h2,
+.arabic-font h3 {
+  font-weight: var(--font-weight-bold);
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+.arabic-font h4,
+.arabic-font h5,
+.arabic-font h6 {
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.4;
+  letter-spacing: 0.005em;
+}
+
+.arabic-font p,
+.arabic-font span,
+.arabic-font div {
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+/* English font optimizations */
+.english-font {
+  --font-weight-light: 200;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+}
+
+.english-font h1,
+.english-font h2,
+.english-font h3 {
+  font-weight: var(--font-weight-extrabold);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.english-font h4,
+.english-font h5,
+.english-font h6 {
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* RTL specific layout adjustments */
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+[dir="rtl"] .ml-auto {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .mr-auto {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+/* Icon adjustments for RTL */
+[dir="rtl"] .flip-icon {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .arrow-left {
+  transform: rotate(180deg);
+}
+
+[dir="rtl"] .arrow-right {
+  transform: rotate(180deg);
+}
+
+/* Floating elements RTL positioning */
+[dir="rtl"] .float-left {
+  float: right;
+}
+
+[dir="rtl"] .float-right {
+  float: left;
+}
+
+/* Animation adjustments for RTL */
+[dir="rtl"] .slide-in-left {
+  animation: slideInRight 0.5s ease-out;
+}
+
+[dir="rtl"] .slide-in-right {
+  animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Gradient direction for RTL */
+[dir="rtl"] .gradient-rtl {
+  background: linear-gradient(270deg, var(--gradient-start), var(--gradient-end));
+}
+
+[dir="ltr"] .gradient-ltr {
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+}
+
+/* Button adjustments */
+[dir="rtl"] .btn-with-icon {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .btn-with-icon .icon {
+  margin-left: 8px;
+  margin-right: 0;
+}
+
+/* Card content alignment */
+[dir="rtl"] .card-content {
+  text-align: right;
+}
+
+[dir="rtl"] .card-title {
+  text-align: right;
+}
+
+[dir="rtl"] .card-description {
+  text-align: right;
+}
+
+/* Navigation adjustments */
+[dir="rtl"] .nav-items {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .breadcrumb {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .breadcrumb-separator {
+  transform: scaleX(-1);
+}
+
+/* Form elements */
+[dir="rtl"] .form-group {
+  text-align: right;
+}
+
+[dir="rtl"] .form-label {
+  text-align: right;
+}
+
+[dir="rtl"] input[type="text"],
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="password"],
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+  text-align: right;
+  padding-right: 12px;
+  padding-left: 40px;
+}
+
+/* Tooltip adjustments */
+[dir="rtl"] .tooltip {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Modal adjustments */
+[dir="rtl"] .modal-content {
+  text-align: right;
+}
+
+[dir="rtl"] .modal-header {
+  text-align: right;
+}
+
+[dir="rtl"] .modal-footer {
+  flex-direction: row-reverse;
+}
+
+/* Table adjustments */
+[dir="rtl"] table {
+  direction: rtl;
+}
+
+[dir="rtl"] th,
+[dir="rtl"] td {
+  text-align: right;
+}
+
+[dir="rtl"] .table-actions {
+  text-align: left;
+}
+
+/* Scrollbar for RTL */
+[dir="rtl"] ::-webkit-scrollbar {
+  width: 8px;
+}
+
+[dir="rtl"] ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[dir="rtl"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+  border-radius: 4px;
+}
+
+/* Print styles for RTL */
+@media print {
+  [dir="rtl"] {
+    direction: rtl;
+  }
+  
+  [dir="rtl"] .page-header {
+    text-align: right;
+  }
+  
+  [dir="rtl"] .page-content {
+    text-align: right;
+  }
+}
+
+/* High contrast mode for RTL */
+@media (prefers-contrast: high) {
+  [dir="rtl"] .text-content {
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+/* Reduced motion for RTL animations */
+@media (prefers-reduced-motion: reduce) {
+  [dir="rtl"] .slide-in-left,
+  [dir="rtl"] .slide-in-right {
+    animation: none;
+  }
+  
+  [dir="rtl"] .floating-element {
+    animation: none;
+  }
+}
+
+/* Mobile adjustments for RTL */
+@media (max-width: 768px) {
+  [dir="rtl"] .mobile-nav {
+    text-align: right;
+  }
+  
+  [dir="rtl"] .mobile-menu {
+    right: 0;
+    left: auto;
+  }
+  
+  [dir="rtl"] .mobile-search {
+    text-align: right;
+  }
+}
+
+/* Dark mode adjustments for RTL */
+@media (prefers-color-scheme: dark) {
+  body.rtl {
+    font-weight: var(--font-weight-normal);
+  }
+  
+  [dir="rtl"] .text-primary {
+    color: #F1F5F9;
+  }
+  
+  [dir="rtl"] .text-secondary {
+    color: #CBD5E1;
+  }
+}
+
+/* Performance optimizations */
+[dir="rtl"] .will-change-transform {
+  will-change: transform;
+}
+
+[dir="rtl"] .gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Custom font loading for Arabic */
+@font-face {
+  font-family: 'Tajawal-Optimized';
+  src: url('https://fonts.gstatic.com/s/tajawal/v9/Iura6YBj_oCad4k1l_QhDhkvIrZNrTA.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 400;
+  unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+}
+
+/* Focus styles for RTL */
+[dir="rtl"] *:focus {
+  outline-offset: 2px;
+}
+
+[dir="rtl"] .focus-visible {
+  outline: 2px solid #3B82F6;
+  outline-offset: 2px;
+}
+
+/* Accessibility improvements for RTL */
+[dir="rtl"] .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

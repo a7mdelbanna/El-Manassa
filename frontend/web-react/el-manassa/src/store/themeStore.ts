@@ -15,7 +15,7 @@ interface ThemeState {
 export const useThemeStore = create<ThemeState>()(
   persist(
     (set) => ({
-      currentPalette: 'ocean',
+      currentPalette: 'modern',
       mode: 'light',
       direction: 'ltr',
       

@@ -2,12 +2,12 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { TeacherDashboard } from './features/dashboard/TeacherDashboard';
 import { DashboardLayout } from './components/layout/DashboardLayout';
-import { TestComponent } from './components/TestComponent';
+import { CreativeLandingPage } from './pages/CreativeLandingPage';
 
 export const AppRouter: React.FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<TestComponent />} />
+      <Route path="/" element={<CreativeLandingPage />} />
       <Route path="/app" element={<DashboardLayout />}>
         <Route index element={<Navigate to="/app/dashboard" replace />} />
         <Route path="dashboard" element={<TeacherDashboard />} />
